@@ -1,0 +1,31 @@
+# Dataset folders (too large for Git)
+ai-service/data/JMuBEN/
+ai-service/data/JMuBEN2/
+ai-service/data/organized/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model files (too large)
+*.h5
+*.keras
+
+# Logs
+*.log
