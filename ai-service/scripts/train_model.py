@@ -111,45 +111,59 @@ history = model.fit(
     verbose=1
 )
 
-# Evaluate on test set
-print("\n Evaluating on test set...")
-test_loss, test_accuracy = model.evaluate(test_dataset)
-print(f"\n Test Accuracy: {test_accuracy*100:.2f}%")
-print(f" Test Loss: {test_loss:.4f}")
-
-# Save model
+# Save model first before testing
 model_path = Path('models/coffee_disease_model.h5')
 model_path.parent.mkdir(exist_ok=True)
 model.save(model_path)
 print(f"\n Model saved to: {model_path.absolute()}")
+print(" MODEL SAVE SUCCESSFUL - Your work is safe!")
+
+# Evaluate on test set (with error handling for corrupted images)
+print("\n Evaluating on test set...")
+try:
+    test_loss, test_accuracy = model.evaluate(test_dataset)
+    print(f"\n Test Accuracy: {test_accuracy*100:.2f}%")
+    print(f" Test Loss: {test_loss:.4f}")
+except Exception as e:
+    print(f"\n Test evaluation failed (likely corrupted image): {str(e)[:100]}")
+    print(" Model already saved successfully!")
+    test_accuracy = history.history['val_accuracy'][-1]
+    print(f" Using final validation accuracy instead: {test_accuracy*100:.2f}%")
 
 # Plot training history
 print("\n Generating training plots...")
-plt.figure(figsize=(12, 4))
+try:
+    plt.figure(figsize=(12, 4))
 
-# Accuracy plot
-plt.subplot(1, 2, 1)
-plt.plot(history.history['accuracy'], label='Training Accuracy')
-plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
-plt.title('Model Accuracy')
-plt.xlabel('Epoch')
-plt.ylabel('Accuracy')
-plt.legend()
-plt.grid(True)
+    # Accuracy plot
+    plt.subplot(1, 2, 1)
+    plt.plot(history.history['accuracy'], label='Training Accuracy')
+    plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+    plt.title('Model Accuracy')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.legend()
+    plt.grid(True)
 
-# Loss plot
-plt.subplot(1, 2, 2)
-plt.plot(history.history['loss'], label='Training Loss')
-plt.plot(history.history['val_loss'], label='Validation Loss')
-plt.title('Model Loss')
-plt.xlabel('Epoch')
-plt.ylabel('Loss')
-plt.legend()
-plt.grid(True)
+    # Loss plot
+    plt.subplot(1, 2, 2)
+    plt.plot(history.history['loss'], label='Training Loss')
+    plt.plot(history.history['val_loss'], label='Validation Loss')
+    plt.title('Model Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.grid(True)
 
-plt.tight_layout()
-plot_path = Path('models/training_history.png')
-plt.savefig(plot_path)
-print(f" Training plots saved to: {plot_path.absolute()}")
+    plt.tight_layout()
+    plot_path = Path('models/training_history.png')
+    plt.savefig(plot_path)
+    print(f" Training plots saved to: {plot_path.absolute()}")
+except Exception as e:
+    print(f" Could not generate plots: {e}")
 
 print("\n Training complete!")
+print(f"\n FINAL RESULTS:")
+print(f"   Training Accuracy: {history.history['accuracy'][-1]*100:.2f}%")
+print(f"   Validation Accuracy: {history.history['val_accuracy'][-1]*100:.2f}%")
+print(f"   Model saved at: {model_path.absolute()}")
