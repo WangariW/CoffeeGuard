@@ -16,8 +16,8 @@ except Exception as e:
     print(f" Error loading model: {e}")
     sys.exit(1)
 
-# Disease classes (must match training order)
-CLASS_NAMES = ['cercospora', 'healthy', 'miner', 'phoma', 'rust']
+# Disease classes 
+CLASS_NAMES = ['cerscospora', 'healthy', 'leaf_miner', 'phoma', 'rust']
 
 def predict_disease(image_path):
     """
@@ -64,7 +64,10 @@ def test_on_sample_images():
     print("\n Testing model on sample images...\n")
     
     # Test one image from each class
-    test_categories = ['healthy', 'rust', 'cercospora', 'phoma', 'miner']
+    test_categories = ['healthy', 'rust', 'cerscospora', 'phoma', 'leaf_miner']
+    
+    total_tested = 0
+    total_correct = 0
     
     for category in test_categories:
         category_path = Path(f'data/organized/test/{category}')
@@ -95,6 +98,10 @@ def test_on_sample_images():
             
             # Check if prediction is correct
             is_correct = predicted == category
+            total_tested += 1
+            if is_correct:
+                total_correct += 1
+                
             status = " CORRECT" if is_correct else " INCORRECT"
             
             print(f"Prediction: {predicted.upper()} ({confidence:.2f}%) {status}")
@@ -103,7 +110,12 @@ def test_on_sample_images():
                                        key=lambda x: x[1], reverse=True):
                 print(f"  {disease}: {prob*100:.2f}%")
             print()
-
+            
+    if total_tested > 0:
+        accuracy = (total_correct / total_tested) * 100
+        print(f"Overall Accuracy : {accuracy:.1f}% ({total_correct}/{total_tested})")
+        
+        
 def test_single_image(image_path):
     """Test model on a single user-provided image"""
     
@@ -133,3 +145,4 @@ if __name__ == "__main__":
     print("\n Testing complete!")
     print("\nTo test a specific image, run:")
     print("  python scripts/test_model.py path/to/image.jpg")
+    

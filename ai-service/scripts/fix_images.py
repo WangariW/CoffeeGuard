@@ -17,14 +17,14 @@ def find_bad_images(directory):
                 corrupted.append(filepath)
     
     if corrupted:
-        print(f"\n\n🗑️ Found {len(corrupted)} corrupted files. Delete them? (y/n)")
+        print(f"\n\n Found {len(corrupted)} corrupted files. Delete them? (y/n)")
         response = input().strip().lower()
         if response == 'y':
             for file in corrupted:
                 os.remove(file)
-                print(f"✅ Deleted: {file}")
-            print(f"\n✅ Cleaned {len(corrupted)} corrupted files!")
+                print(f" Deleted: {file}")
+            print(f"\n Cleaned {len(corrupted)} corrupted files!")
     else:
-        print("✅ No corrupted files found!")
+        print(" No corrupted files found!")
 
 find_bad_images(test_path) 

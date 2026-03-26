@@ -7,8 +7,8 @@ data_dir = Path('data')
 output_dir = Path('data/organized')
 
 # Create organized directory structure
-classes = ['healthy', 'rust', 'cercospora', 'phoma', 'miner']
-for split in ['train', 'validation', 'test']:
+classes = ['healthy', 'rust', 'cerscospora', 'phoma', 'leaf_miner']
+for split in ['train', 'val', 'test']:
     for cls in classes:
         (output_dir / split / cls).mkdir(parents=True, exist_ok=True)
 
@@ -16,7 +16,7 @@ for split in ['train', 'validation', 'test']:
 folder_mapping = {
     'JMuBEN2/Healthy-20210326T083815Z-001/Healthy': 'healthy',
     'JMuBEN/Leaf rust-20210326T083416Z-001/Leaf rust': 'rust',
-    'JMuBEN/Cerscospora-20210326T085017Z-001/Cerscospora': 'cercospora',
+    'JMuBEN/Cerscospora-20210326T085017Z-001/Cerscospora': 'cerscospora',
     'JMuBEN/Phoma-20210326T082051Z-001/Phoma': 'phoma',
     'JMuBEN2/Miner-20210326T082341Z-001/Miner': 'miner'
 }

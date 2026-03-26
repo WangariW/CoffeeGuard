@@ -20,7 +20,7 @@ app = FastAPI(
 # Enable CORS for frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify your frontend URL
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -28,7 +28,7 @@ app.add_middleware(
 
 # Load model at startup
 MODEL_PATH = Path('models/coffee_disease_model.h5')
-CLASS_NAMES = ['cercospora', 'healthy', 'miner', 'phoma', 'rust']
+CLASS_NAMES = ['cerscospora', 'healthy', 'leaf_miner', 'phoma', 'rust']
 
 # Disease information database
 DISEASE_INFO = {
@@ -40,9 +40,9 @@ DISEASE_INFO = {
         'treatment': 'Apply copper-based fungicide, prune affected branches, improve air circulation',
         'risk_level': 'HIGH'
     },
-    'cercospora': {
+    'cerscospora': {
         'scientific_name': 'Cercospora coffeicola',
-        'common_name': 'Cercospora Leaf Spot',
+        'common_name': 'Cerscospora Leaf Spot',
         'severity': 'Medium',
         'symptoms': 'Brown leaf spots with yellow halos',
         'treatment': 'Fungicide application, remove infected leaves, ensure proper drainage',
@@ -56,7 +56,7 @@ DISEASE_INFO = {
         'treatment': 'Copper-based sprays, improve plant nutrition, reduce humidity',
         'risk_level': 'MEDIUM'
     },
-    'miner': {
+    'leaf_miner': {
         'scientific_name': 'Leucoptera coffeella',
         'common_name': 'Coffee Leaf Miner',
         'severity': 'Medium',
@@ -195,3 +195,4 @@ if __name__ == "__main__":
     print("="*60 + "\n")
     
     uvicorn.run(app, host="0.0.0.0", port=8000)
+    
