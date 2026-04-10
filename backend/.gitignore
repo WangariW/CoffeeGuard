@@ -1,0 +1,26 @@
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Configuration & Secrets
+.env
+
+# Database
+*.db
+*.sqlite3
+
+# Project Specific
+data/organized/
+models/*.h5
+
+# OS specific
+.DS_Store
+Thumbs.db
