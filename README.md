@@ -180,6 +180,11 @@ Run development server
 npm run dev
 ```
 
+Frontend runs on: 
+```bash
+http://localhost:5173
+```
+
 ---
 🔐 Configuration
 
