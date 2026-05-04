@@ -12,6 +12,15 @@ The system integrates a fine-tuned MobileNetV2 model with transfer learning and 
 
 ---
 
+## 🧩 Architecture
+
+CoffeeGuard is structured as a modular full-stack system consisting of:
+
+* A React frontend for visualization and interaction
+* FastAPI backend services for API handling
+* An AI inference microservice for model predictions
+* Geospatial processing components for regional heatmap visualization
+
 ## ✨ Features
 
 * 🤖 AI-powered image classification using MobileNetV2
@@ -59,16 +68,6 @@ The system integrates a fine-tuned MobileNetV2 model with transfer learning and 
 * Railway
 * Vercel
 
----
-
-## 🏗️ System Architecture
-
-CoffeeGuard follows a microservices-inspired architecture where:
-
-* The frontend handles visualization and user interaction
-* FastAPI services process requests and AI inference
-* Geospatial services manage mapping and regional visualization
-* Machine learning models handle classification and prediction workflows
 
 ---
 
@@ -112,19 +111,79 @@ git clone https://github.com/WangariW/CoffeeGuard.git
 cd CoffeeGuard
 ```
 
-### Backend Setup
+### Backend Setup(FastAPI)
+
+Navigate to backend directory
+
+```bash
+cd backend
+```
+Install dependencies
 
 ```bash
 pip install -r requirements.txt
+```
+Run FastAPI server
+
+```bash
+uvicorn api:app --reload
+```
+Backend runs on:
+
+```bash
+http://127.0.0.1:8000
+```
+
+### AI Service Setup
+
+Navigate to AI service directory
+
+```bash
+cd ai-service
+```
+
+Activate virtual environment
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run AI inference service 
+
+```bash
 uvicorn api:app --reload
 ```
 
+
 ### Frontend Setup
+
+Navigate to frontend directory
+
+```bash
+cd frontend
+```
+
+Install frontend dependencies 
 
 ```bash
 npm install
+```
+
+Run development server
+```bash
 npm run dev
 ```
+
+---
+🔐 Configuration
+
+Environment variables were used to securely manage API keys, authentication secrets, and service configuration during development and deployment.
 
 ---
 
