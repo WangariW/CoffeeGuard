@@ -76,16 +76,30 @@ CoffeeGuard follows a microservices-inspired architecture where:
 
 ### Dashboard
 
+![Dashboard](db1.png)
+
+![Dashboard](db2.png)
+
+![Dashboard](ai.png)
+
+![Dashboard](ai2.png)
 
 
 ### Heatmap Visualization
 
-(Add screenshot here)
+![Heatmap](hm1.png)
+
+![Heatmap](radar.png)
 
 
 ### Authentication Flow
 
-(Add screenshot here)
+![Login](auth.png)
+
+![Login](auth2.png)
+
+![Login](auth3.png)
+
 
 ---
 
